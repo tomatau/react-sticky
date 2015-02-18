@@ -25,7 +25,7 @@
     "reactify": "^0.14.0"
   },
   "peerDependencies": {
-    "react": "0.11.x"
+    "react": "0.12.2"
   },
   "dependencies": {
     "raf": "^2.0.2"
