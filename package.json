@@ -20,10 +20,6 @@
     "url": "https://github.com/tomatao/react-sticky/issues"
   },
   "homepage": "https://github.com/tomatao/react-sticky",
-  "devDependencies": {
-    "browserify": "^5.10.0",
-    "reactify": "^0.14.0"
-  },
   "peerDependencies": {
     "react": "0.12.2"
   },
