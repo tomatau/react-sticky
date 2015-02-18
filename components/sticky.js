@@ -6,14 +6,14 @@ var Sticky = React.createClass({
   reset: function() {
     var html = document.documentElement, body = document.body;
     var node = this.getDOMNode();
-
     var windowOffset = window.pageYOffset || (html.clientHeight ? html : body).scrollTop;
     var classes = node.className;
+    this.fixedOffset = this.props.fixedOffset || 0;
     node.className = '';
     this.elementOffset = node.getBoundingClientRect().top + windowOffset;
     node.className = classes;
-  },  
-  
+  },
+
   tick: function() {
     if (!this.unmounting) {
       raf(this.tick);
@@ -26,13 +26,13 @@ var Sticky = React.createClass({
 
     if (this.scrolling) {
       this.scrolling = false;
-      if (pageYOffset > this.elementOffset) {
+      if (window.pageYOffset + this.fixedOffset > this.elementOffset) {
         this.setState({ className: this.props.stickyClassName || 'sticky' });
       } else {
         this.setState({ className: '' });
       }
     }
-  },  
+  },
 
   handleResize: function() {
     this.resizing = true;
@@ -43,12 +43,12 @@ var Sticky = React.createClass({
   },
 
   getInitialState: function() {
-    return { className: '' }; 
+    return { className: '' };
   },
 
   componentDidMount: function() {
     this.reset();
-    this.tick(); 
+    this.tick();
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.handleResize);
   },
